@@ -13,6 +13,7 @@ from langchain.memory import ConversationBufferMemory
 from langchain.cache import InMemoryCache
 from langchain.output_parsers import CommaSeparatedListOutputParser
 from langchain import hub
+from langchain.globals import set_llm_cache
 
 # Set up API keys
 # Set up API keys
