@@ -43,12 +43,12 @@ output_parser = CommaSeparatedListOutputParser()
 
 # Function to fetch activities based on interest, destination, and city
 def searching_country(interest, destination,city):
-    system_template = "You are an AI assistant that specializes in recommending exciting,fun and beautiful place for  tourist based on what they want .keep it concise and short with not more than 12 suggestions in total and make3 it sound exciting"
+    system_template = f"You are an AI assistant that specializes in recommending exciting,fun and beautiful place for  tourist  .kindly list out the activities, keep it concise and short with not more than 12 suggestions in total and make it sound exciting"
     system_message_prompt = SystemMessagePromptTemplate.from_template(system_template)
     human_template = "{request}"
     human_message_prompt = HumanMessagePromptTemplate.from_template(human_template)
     chat_prompt = ChatPromptTemplate.from_messages([system_message_prompt, human_message_prompt])
-    msg = f"Kindly recommend what to do or where to go in {city} {destination} based."
+    msg = f"Kindly recommend what to do or where to go as regards {interest} in {city} {destination} based."
 
     request = chat_prompt.format_prompt(request=msg).to_messages()
     result = agent_executor.invoke({'input': request})
