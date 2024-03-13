@@ -9,14 +9,17 @@ from langchain.cache import InMemoryCache
 from langchain.globals import set_llm_cache
 
 # Set up API keys
-with open('open_api_key') as openkey_file:
-    OPENAI_API_KEY = openkey_file.read().strip()
+# Set up API keys
 
-with open("SERPAPI_API_KEY") as serpkey_file:
-    SERPAPI_API_KEY = serpkey_file.read().strip()
-    
-os.environ['OPENAI_API_KEY'] =  OPENAI_API_KEY
+OPENAI_API = open('open_api_key') 
+OPENAI_API_KEY = OPENAI_API.read()
+
+SERPAPI = open("SERPAPI_API_KEY")
+SERPAPI_API_KEY = SERPAPI.read()
+
+os.environ['OPENAI_API_KEY']= OPENAI_API_KEY
 os.environ['SERPAPI_API_KEY'] = SERPAPI_API_KEY
+
 
 # Pull necessary components
 llm = ChatOpenAI(temperature=0)
