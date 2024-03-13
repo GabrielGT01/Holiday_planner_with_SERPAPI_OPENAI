@@ -22,7 +22,7 @@ os.environ['SERPAPI_API_KEY'] = SERPAPI_API_KEY
 
 
 # Pull necessary components
-llm = ChatOpenAI(temperature=0)
+llm = ChatOpenAI(openai_api_key=OPENAI_API_KEY, temperature=0)
 prompt = hub.pull('hwchase17/react')
 tools = load_tools(["serpapi"], llm=llm)
 
