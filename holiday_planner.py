@@ -1,12 +1,18 @@
 import streamlit as st
 import os
 from langchain_openai import ChatOpenAI
+from langchain.schema import (
+    SystemMessage,
+    HumanMessage,
+    AIMessage
+)
+import langchain.agents
+from langchain.agents import load_tools, Tool, AgentExecutor, create_react_agent
 from langchain.prompts import ChatPromptTemplate, HumanMessagePromptTemplate, SystemMessagePromptTemplate
-from langchain.agents import load_tools, create_react_agent, AgentExecutor
+from langchain.memory import ConversationBufferMemory
+from langchain.cache import InMemoryCache
 from langchain.output_parsers import CommaSeparatedListOutputParser
 from langchain import hub
-from langchain.cache import InMemoryCache
-from langchain.globals import set_llm_cache
 
 # Set up API keys
 # Set up API keys
@@ -37,21 +43,19 @@ set_llm_cache(InMemoryCache())
 output_parser = CommaSeparatedListOutputParser()
 
 # Function to fetch activities based on interest, destination, and city
-def searching_country(interest, destination, city):
-    
-    system_template = "You are an AI assistant that specializes in recommending exciting,funlife time memories events for                            tourists based on thier highlighted interest and the exact location where they can be found.keep it concise                       and short with not more than 12 suggestions"
-                     
-                        
+def searching_country(interest, destination,city):
+    system_template = "You are an AI assistant that specializes in recommending exciting,fun,new,life time memories events for  tourist based on thier highlighted interest and the exact location where they can be found.keep it concise and short with not more than 12 suggestions"
     system_message_prompt = SystemMessagePromptTemplate.from_template(system_template)
     human_template = "{request}"
     human_message_prompt = HumanMessagePromptTemplate.from_template(human_template)
     chat_prompt = ChatPromptTemplate.from_messages([system_message_prompt, human_message_prompt])
-    msg = f"Kindly give details of activities that can be done in {city} {destination} based on my {interest})"
+    msg = f"Kindly give details of my list of {interest}  activities that can be done in {city} {destination} "
 
-    request = chat_prompt.format_prompt(request=msg).to_messages()
+    request = chat_prompt.format_prompt(request=msg, format_instructions=output_parser.get_format_instructions()).to_messages()
     result = agent_executor.invoke({'input': request})
+    
     result = result['output']
-
+   
     return result
 
 # Streamlit app
@@ -71,7 +75,7 @@ if __name__ == "__main__":
             st.write(f"You're eager to explore {city} in {destination}")
             st.divider()
 
-        interest = ["Sightseeing", "Cultural experiences", "Outdoor adventures", "Shopping", "Culinary experiences",                                 "Relaxation", "Meeting new people", 'Learning']
+        interest = ["Sightseeing", "Cultural experiences", "Outdoor adventures", "Shopping", "Culinary experiences","Relaxation", "Meeting new people", 'Learning']
 
         x = st.multiselect(label="Events", options=interest)
         st.write("Let's plan your adventure 🏖️🏝️🍹🌞")
