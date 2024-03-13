@@ -18,7 +18,7 @@ from langchain.globals import set_llm_cache
 # Set up API keys
 # Set up API keys
 
-Import os
+import os
 os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 
 os.environ['SERPAPI_API_KEY'] = st.secrets["SERPAPI_API_KEY"]
