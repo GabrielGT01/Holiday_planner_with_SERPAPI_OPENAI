@@ -19,14 +19,15 @@ from langchain.globals import set_llm_cache
 # Set up API keys
 
 import os
-openai.api_key = st.secrets['OPENAI_API_KEY']
+
+openai = st.secrets['OPENAI_API_KEY']
 #3OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
 
 os.environ['SERPAPI_API_KEY'] = st.secrets["SERPAPI_API_KEY"]
 
 
 # Pull necessary components
-llm = ChatOpenAI(openai_api_key = openai.api_key, temperature=0)
+llm = ChatOpenAI(openai_api_key = openai, temperature=0)
 prompt = hub.pull('hwchase17/react')
 tools = load_tools(["serpapi"], llm=llm)
 
