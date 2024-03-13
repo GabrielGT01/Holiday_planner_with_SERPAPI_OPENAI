@@ -18,14 +18,10 @@ from langchain.globals import set_llm_cache
 # Set up API keys
 # Set up API keys
 
-OPENAI_API = open('open_api_key') 
-OPENAI_API_KEY = OPENAI_API.read()
+Import OS
+os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 
-SERPAPI = open("SERPAPI_API_KEY")
-SERPAPI_API_KEY = SERPAPI.read()
-
-os.environ['OPENAI_API_KEY']= OPENAI_API_KEY
-os.environ['SERPAPI_API_KEY'] = SERPAPI_API_KEY
+os.environ['SERPAPI_API_KEY'] = st.secrets["SERPAPI_API_KEY"]
 
 
 # Pull necessary components
