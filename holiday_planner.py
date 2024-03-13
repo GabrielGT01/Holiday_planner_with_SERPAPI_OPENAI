@@ -14,7 +14,7 @@ with open('open_api_key') as openkey_file:
 
 with open("SERPAPI_API_KEY") as serpkey_file:
     SERPAPI_API_KEY = serpkey_file.read().strip()
-
+os.environ['OPENAI_API_KEY'] =  OPENAI_API_KEY
 os.environ['SERPAPI_API_KEY'] = SERPAPI_API_KEY
 
 # Pull necessary components
