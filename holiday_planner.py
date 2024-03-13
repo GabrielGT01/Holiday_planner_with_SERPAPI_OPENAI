@@ -42,7 +42,7 @@ def searching_country(interest, destination, city):
     human_template = "{request}"
     human_message_prompt = HumanMessagePromptTemplate.from_template(human_template)
     chat_prompt = ChatPromptTemplate.from_messages([system_message_prompt, human_message_prompt])
-    msg = f"Kindly give details of activities that can be done in {city} {destination} based on {my interest})"
+    msg = f"Kindly give details of activities that can be done in {city} {destination} based on my {interest})"
 
     request = chat_prompt.format_prompt(request=msg).to_messages()
     result = agent_executor.invoke({'input': request})
