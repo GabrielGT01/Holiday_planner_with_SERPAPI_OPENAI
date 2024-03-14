@@ -77,7 +77,7 @@ if __name__ == "__main__":
         interest = ["Sightseeing", "Cultural experiences", "Outdoor adventures", "Shopping", "Culinary experiences","Relaxation", "Meeting new people", 'Learning']
 
         x = st.multiselect(label="Events", options=interest)
-        st.write("Let's plan your adventure 🏖️🏝️🍹🌞")
+        st.write("Let's plan your adventure 🏖️🏝️🍹🌞 25")
         st.divider()
 
         if st.button("Discover"):
