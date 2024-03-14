@@ -43,12 +43,12 @@ output_parser = CommaSeparatedListOutputParser()
 
 # Function to fetch activities based on interest, destination, and city
 def searching_country(interest, destination,city):
-    system_template = f"You are an AI assistant that specializes in recommending exciting,fun and beautiful place for  tourist .kindly list out the activities as selected by the individual, keep it concise and short with not more than 12 suggestions in total and make it sound exciting"
+    system_template = f"You are an AI assistant that specializes in recommending exciting,fun and beautiful place for  tourist.kindly list out the activities to do as stated by the individuals interest, keep it concise and short with not more than 12 suggestions in total and make it sound exciting"
     system_message_prompt = SystemMessagePromptTemplate.from_template(system_template)
     human_template = "{request}"
     human_message_prompt = HumanMessagePromptTemplate.from_template(human_template)
     chat_prompt = ChatPromptTemplate.from_messages([system_message_prompt, human_message_prompt])
-    msg = f"Kindly recommend what to do or where to go as regards  {interest} in {city} {destination} based."
+    msg = f"Kindly recommend what to do or where to go in {city} {destination},These are my {interest}."
 
     request = chat_prompt.format_prompt(request=msg).to_messages()
     result = agent_executor.invoke({'input': request})
@@ -81,5 +81,5 @@ if __name__ == "__main__":
         st.divider()
 
         if st.button("Discover"):
-            ##3activities = searching_country(x, city, destination)
-            st.text_area(label=f"Activities suited to your interest in {city} include {x} ", value=x, height=500)
+            activities = searching_country(x, city, destination)
+            st.text_area(label=f"Search result based on your interest ", value=activities, height=500)
