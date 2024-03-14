@@ -1,4 +1,4 @@
-import streamlit as st
+3import streamlit as st
 import os
 from langchain_openai import ChatOpenAI
 from langchain.schema import (
@@ -81,5 +81,5 @@ if __name__ == "__main__":
         st.divider()
 
         if st.button("Discover"):
-            activities = searching_country(x, city, destination)
-            st.text_area(label=f"Activities suited to your interest in {city}", value=activities, height=500)
+            ##3activities = searching_country(x, city, destination)
+            st.text_area(label=f"Activities suited to your interest in {city}" include {x}, value=x, height=500)
