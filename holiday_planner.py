@@ -60,7 +60,7 @@ def searching_country(interest, destination,city):
 # Streamlit app
 if __name__ == "__main__":
     st.title("Discover the World! 🌍")
-    st.subheader('Holiday Plan 🧳')
+    st.subheader("Pack your bags and let's hit the road!"🧳)
 
     Language = ["English"]
     option = st.sidebar.selectbox("Language", Language, index=0)
