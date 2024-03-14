@@ -82,4 +82,4 @@ if __name__ == "__main__":
 
         if st.button("Discover"):
             ##3activities = searching_country(x, city, destination)
-            st.text_area(label=f"Activities suited to your interest in {city}" include {x}, value=x, height=500)
+            st.text_area(label=f"Activities suited to your interest in {city} include {x} ", value=x, height=500)
