@@ -9,7 +9,6 @@ from langchain.schema import (
 import langchain.agents
 from langchain.agents import load_tools, Tool, AgentExecutor, create_react_agent
 from langchain.prompts import ChatPromptTemplate, HumanMessagePromptTemplate, SystemMessagePromptTemplate
-from langchain.memory import ConversationBufferMemory
 from langchain.cache import InMemoryCache
 from langchain.output_parsers import CommaSeparatedListOutputParser
 from langchain import hub
@@ -33,7 +32,7 @@ tools = load_tools(["serpapi"], llm=llm)
 
 # Initialize agent and executor
 agent = create_react_agent(llm, tools, prompt)
-agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=False, handle_parsing_errors=True)
+agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=False, handle_parsing_errors=True,max_iterations=3)
 
 # Initialize cache
 set_llm_cache(InMemoryCache())
